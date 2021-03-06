@@ -39,7 +39,7 @@ class RangeTest {
 	}
 	
 	
-	// ----------------------------- test getLength() ----------------------------- //
+	
 	// test cases 
 			// (3,10 -> 7) (0, 6 -> 6) (-10, 0 -> 10) (-6, -4 -> 2)
 	@DisplayName("get Length Tests")
@@ -61,8 +61,9 @@ class RangeTest {
 		// (2,6 -> 3) (0,6 -> 0) (-8, 0 -> -8) (-10, -5 -> -10) (-8, 5 -> -8) (0,0)
 	@DisplayName("get Lower Bound")
 	@ParameterizedTest(name= "Get lower bound of {1} and {0}")
-	@CsvSource({"2,6", "0,6" , "-8,0" , "-10,-5", "-8,5" , "0, 0" })
+	@CsvSource({"2,6", "0,6" , "-8,0" , "-10,-5", "-8,5" , "0, 0", "-8, -8" , "13, 13" })
 	@Tag("Natnael")
+	@Tag("Get Lower Bound")
 	void testLowerBoundOfTwoNumber(double lower, double upper) {
 		Range range = new Range(lower,upper);
 		//double actual = range.getLowerBound();
@@ -76,8 +77,9 @@ class RangeTest {
 	// (2,6 -> 6) (0,6 -> 6) (-8, 0 -> 0) (-10, -5 -> --5) (-6, 5 -> 5) (0,0 -> 0)
 	@DisplayName("Get Upper Bound")
 	@ParameterizedTest(name= "Get the Upper bound of {1} and {0}")
-	@CsvSource({"2,6" , "0,6", "-8,0" , "-10,-5","-8,-5"})
+	@CsvSource({"2,6" , "0,6", "-8,0" , "-10,-5","-8,-5", "-8, -8" , "0, 0" , "13, 13"})
 	@Tag("Natnael")
+	@Tag("Get Upper Bound")
 	void testUpperBoundOfTwoPositiveNumber(double lower, double upper) {
 		Range range = new Range(lower,upper);
 		//System.out.println(range.getUpperBound());
@@ -91,7 +93,7 @@ class RangeTest {
 	// ----------------------------- test getCentralValue() ----------------------------- //
 	@DisplayName("Get Central Value")
 	@ParameterizedTest(name= "Get the central value of {1} and {0}")
-	@CsvSource({"2,6" , "3, 6" , "0,6", "-8,0" , "-10,-5","-8,-5"})
+	@CsvSource({"2,6" , "3, 6" , "0,6", "-8,0" , "-10,-5","-8,-5", "-8, -8" , "0, 0" , "13, 13"})
 	@Tag("Natnael")
 	void testCentralValue(double lower, double upper) {
 		Range range = new Range(lower, upper);
