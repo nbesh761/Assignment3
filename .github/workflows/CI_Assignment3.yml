@@ -25,13 +25,13 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          mkdir bin
-          mkdir lib
+          echo Creating Folders
+          [[ -d bin ]] || mkdir bin
+          [[ -d lib ]] || mkdir lib
           curl https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.5.2/junit-platform-console-standalone-1.5.2.jar -o lib/junit-platform-console-standalone-1.5.2.jar
           curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.5/jcommon-1.0.5.jar -o lib/jcommon-1.0.5.jar
-          curl https://packages.atlassian.com/maven-3rdparty/gnujaxp/gnujaxp/1.0.0/gnujaxp-1.0.0.jar -o lib/gnujaxp-1.0.0.jar 
-          curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.0-rc1/jcommon-1.0.0-rc1.jar -o lib/jcommon-1.0.0-rc1.jar 
-          curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar
           javac -d bin/ $(find jFreeChart_A3/src/ -name "*.java")
-          javac -d bin -cp bin:lib/junit-platform-console-standalone-1.5.2.jar $(find jFreeChart_A3/test/ -name "*.java")
+          javac -d bin -cp bin:lib/*.jar $(find jFreeChart_A3/test/ -name "*.java")
           java -jar lib/junit-platform-console-standalone-1.5.2.jar --class-path bin --scan-class-path
+
+
