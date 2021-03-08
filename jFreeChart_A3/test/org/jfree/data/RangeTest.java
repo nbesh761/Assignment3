@@ -201,26 +201,36 @@ class RangeTest {
 	@Timeout(10)
 	@Tag("TestCombine")
 	void testCombine(double lower1, double upper1, double lower2, double upper2, double expectedLower, double expectedUpper) {
-		if (lower1 == 0) {
-			Range range1 = null;
-			Range range2 = new Range(lower2, upper2);
-			Range expected = new Range(expectedLower, expectedUpper);
-			Range actual = Range.combine(range1, range2);
-			assertEquals(expected, actual);
-		} else if (lower1 == 0 && lower2 == 0) {
-			Range range1 = null;
-			Range range2 = null;
-			Range expected = null;
-			Range actual = Range.combine(range1, range2);
-			assertEquals(expected, actual);
-		} else {
-			Range range1 = new Range(lower1, upper1);
-			Range range2 = new Range(lower2, upper2);
-			Range expected = new Range(expectedLower, expectedUpper);
-			Range actual = Range.combine(range1, range2);
-			assertEquals(expected, actual);
-		}
+		Range range1 = new Range(lower1, upper1);
+		Range range2 = new Range(lower2, upper2);
+		Range expected = new Range(expectedLower, expectedUpper);
+		Range actual = Range.combine(range1, range2);
+		assertEquals(expected, actual);
 	}
+	
+//	@Timeout(10)
+//	@Tag("TestCombine")
+//	void testCombine(double lower1, double upper1, double lower2, double upper2, double expectedLower, double expectedUpper) {
+//		if (lower1 == 0) {
+//			Range range1 = null;
+//			Range range2 = new Range(lower2, upper2);
+//			Range expected = new Range(expectedLower, expectedUpper);
+//			Range actual = Range.combine(range1, range2);
+//			assertEquals(expected, actual);
+//		} else if (lower1 == 0 && lower2 == 0) {
+//			Range range1 = null;
+//			Range range2 = null;
+//			Range expected = null;
+//			Range actual = Range.combine(range1, range2);
+//			assertEquals(expected, actual);
+//		} else {
+//			Range range1 = new Range(lower1, upper1);
+//			Range range2 = new Range(lower2, upper2);
+//			Range expected = new Range(expectedLower, expectedUpper);
+//			Range actual = Range.combine(range1, range2);
+//			assertEquals(expected, actual);
+//		}
+//	}
 	
 	
 	/* cases:
