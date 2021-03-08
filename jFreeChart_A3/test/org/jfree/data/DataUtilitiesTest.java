@@ -65,6 +65,8 @@ class DataUtilitiesTest {
 	@ParameterizedTest(name="Check the percentage value of key {0},{1} and {2} with values of {3},{4} and {5}")
 	@CsvSource({"0,1,2,5,9,2", "0,1,2, 2,3,1" , "0,1,2,8,4,12"})
 	@Tag("Natnael")
+	@Timeout(10)
+	@Tag("Test Cumulative Percentage")
 	void testCumulativePercentage(int key1, int key2, int key3, int value1, int value2, int value3) {
 		
 		val = mock(KeyedValues.class);
@@ -128,6 +130,8 @@ class DataUtilitiesTest {
 	
 	///////////////////////****** Brendon ******///////////////////////
 	@Test
+	@Timeout(10)
+	@Tag("Test Creating Number Array")
 	void testCreateNumberArray() {
 		double[] test = {2.0, 4.0, 6.0};
 		Number[] actual = DataUtilities.createNumberArray(test);
@@ -146,7 +150,10 @@ class DataUtilitiesTest {
 		 });
 	}
 	
+	
 	@Test
+	@Timeout(10)
+	@Tag("Test Create Number Array 2D")
 	void testCreateNumberArray2D() {
 		
 		double[][] test = new double[3][3];
@@ -174,6 +181,8 @@ class DataUtilitiesTest {
 	}
 	
 	@Test
+	@Timeout(10)
+	@Tag("Testing Create Number Array 2D")
 	void testCreateNullNumberArray2D() {
 		assertThrows(InvalidParameterException.class,
 				()-> {

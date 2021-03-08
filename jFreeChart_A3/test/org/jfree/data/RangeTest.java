@@ -46,6 +46,7 @@ class RangeTest {
 	@ParameterizedTest(name = "Test differnce of {1} minus {0}")
 	@CsvSource({"3,10","0,6","-10,0","-6,-4", "0,0" , "-10, -10" , "7,7"})
 	@Tag("Natnael")
+	@Timeout(10)
 	@Tag("GetLength")
 	void getLengthShouldReturnDifference (double lower, double upper) {
 		
@@ -56,13 +57,13 @@ class RangeTest {
 	
 
 	
-	// ----------------------------- test getLowerBound() ----------------------------- //
 	// test cases
 		// (2,6 -> 3) (0,6 -> 0) (-8, 0 -> -8) (-10, -5 -> -10) (-8, 5 -> -8) (0,0)
 	@DisplayName("get Lower Bound")
 	@ParameterizedTest(name= "Get lower bound of {1} and {0}")
 	@CsvSource({"2,6", "0,6" , "-8,0" , "-10,-5", "-8,5" , "0, 0", "-8, -8" , "13, 13" })
 	@Tag("Natnael")
+	@Timeout(10)
 	@Tag("Get Lower Bound")
 	void testLowerBoundOfTwoNumber(double lower, double upper) {
 		Range range = new Range(lower,upper);
@@ -73,12 +74,12 @@ class RangeTest {
 	
 	
 	
-	// ----------------------------- test getUpperBound() ----------------------------- //
 	// (2,6 -> 6) (0,6 -> 6) (-8, 0 -> 0) (-10, -5 -> --5) (-6, 5 -> 5) (0,0 -> 0)
 	@DisplayName("Get Upper Bound")
 	@ParameterizedTest(name= "Get the Upper bound of {1} and {0}")
 	@CsvSource({"2,6" , "0,6", "-8,0" , "-10,-5","-8,-5", "-8, -8" , "0, 0" , "13, 13"})
 	@Tag("Natnael")
+	@Timeout(10)
 	@Tag("Get Upper Bound")
 	void testUpperBoundOfTwoPositiveNumber(double lower, double upper) {
 		Range range = new Range(lower,upper);
@@ -90,11 +91,13 @@ class RangeTest {
 	
 	
 	
-	// ----------------------------- test getCentralValue() ----------------------------- //
+	
 	@DisplayName("Get Central Value")
 	@ParameterizedTest(name= "Get the central value of {1} and {0}")
 	@CsvSource({"2,6" , "3, 6" , "0,6", "-8,0" , "-10,-5","-8,-5", "-8, -8" , "0, 0" , "13, 13"})
 	@Tag("Natnael")
+	@Timeout(10)
+	@Tag("GetCentralValue")
 	void testCentralValue(double lower, double upper) {
 		Range range = new Range(lower, upper);
 		double expected = (lower + upper)/2;
@@ -103,13 +106,15 @@ class RangeTest {
 		
 	}
 	
-	// ----------------------------- test toString() ----------------------------- //
+	
 		// test cases 
 			// (4,6 -> Range[4.0,6.0]) (0, 6 -> Range[0.0,6.0]) (-3, 0 -> Range[-3.0,0.0]) (-6, -4 -> Range[-6.0,-4.0])
 	@DisplayName("Get String Value")	
 	@ParameterizedTest(name="Get the string value of {1} and {0}")
 	@CsvSource({"2,6" , "3, 6" , "0,6", "-8,0" , "-10,-5","-8,-5"})
 	@Tag("Natnael")
+	@Timeout(10)
+	@Tag("toString")
 	void testStringValue(double lower, double upper) {
 		Range range = new Range(lower, upper);
 		//System.out.println(range.getLength());
@@ -123,11 +128,13 @@ class RangeTest {
 			
 	}
 	
-	// ----------------------------- test equals() ----------------------------- //
+	
 	@DisplayName("Check Equal Values")	
 	@ParameterizedTest(name="Check the string value of {0},{1} and {2},{3}")
 	@CsvSource({"2,6,2,6" , "3, 6,3,6" , "0,6,0,6", "-8,0,-8,0" , "-10,-5,-10,-5","-8,5,-8,5"})
 	@Tag("Natnael")
+	@Timeout(10)
+	@Tag("testEquals")
 	void testEquals(double lower1, double upper1, double lower2, double upper2) {
 		Range range = new Range(lower1,upper1);
 		Range range2 = new Range(lower2, upper2);
@@ -138,11 +145,13 @@ class RangeTest {
 			
 	}
 	
-	// ----------------------------- test testExpand() ----------------------------- //
+	
 	@DisplayName("Check test to include all values")
 	@ParameterizedTest(name="Returns A range which spans over {0}, {1}, and has been expanded to contain {2} ")
 	@CsvSource({"2,4,6" , "-3, 5, 0", "-8, -4, 4"})
 	@Tag("Natnael")
+	@Timeout(10)
+	@Tag("testExpand")
 	void testExpand(double lowerRange, double upperRange, double input) {
 		Range range = new Range(lowerRange, upperRange);
 		double num = input;
@@ -189,6 +198,8 @@ class RangeTest {
 		"0, 0, 0, 0, 0, 0",
 		"0, 0, 2, 8, 2, 8"
 	})
+	@Timeout(10)
+	@Tag("TestCombine")
 	void testCombine(double lower1, double upper1, double lower2, double upper2, double expectedLower, double expectedUpper) {
 		if (lower1 == 0) {
 			Range range1 = null;
@@ -223,6 +234,8 @@ class RangeTest {
 		"4, 8, 1, 4",
 		"4, 8, 4, 4"
 	})
+	@Timeout(10)
+	@Tag("testConstrain")
 	void testConstrain(double lower, double upper, double value, double expected) {
 		Range range = new Range(lower, upper);
 	    double actual = range.constrain(value);	
@@ -241,6 +254,8 @@ class RangeTest {
 		"1, 8, 9, false",
 		"1, 8, 5, true"
 	})
+	@Timeout(10)
+	@Tag("testContains")
 	void testContains(double lower, double upper, double value, boolean expected) {
 		Range range = new Range(lower, upper);
 		boolean actual = range.contains(value);
@@ -258,6 +273,8 @@ class RangeTest {
 		"2, 6, 0.25, 0.5, 1, 8",
 		"-6, -2, 0.5, 0.25, -8, -1",
 	})
+	@Tag("testExpand")
+	@Timeout(10)
 	void testExpand(double lower, double upper, double lowerMargin, double upperMargin, double expectedLower, double expectedUpper) {
 		Range range = new Range(lower, upper);
 		Range actual = Range.expand(range, lowerMargin, upperMargin);
@@ -267,6 +284,8 @@ class RangeTest {
 	}
 	
 	@Test
+	@Tag("testExpandNull")
+	@Timeout(10)
 	void testExpandNull() {
 		
 		assertThrows(IllegalArgumentException.class,
@@ -287,6 +306,8 @@ class RangeTest {
 		"1, 8, 5, 6, 13",
 		"1, 8, -5, -4, -3"
 	})
+	@Tag("testShiftTwoParams")
+	@Timeout(10)
 	void testShiftTwoParams(double lower, double upper, double value, double expectedLower, double expectedUpper) {
 		Range range = new Range(lower, upper);
 		Range actual = Range.shift(range, value);
@@ -296,6 +317,8 @@ class RangeTest {
 	}
 	
 	@Test
+	@Tag("testShiftTwoParamsNullRange")
+	@Timeout(10)
 	void testShiftTwoParamsNullRange() {
 
 		assertThrows(IllegalArgumentException.class,
@@ -324,6 +347,7 @@ class RangeTest {
 		"1, 8, -5, -4, -3, false",
 		"1, 8, -5, -4, -3, false"
 	})
+	@Tag("testShiftThreeParams")
 	void testShiftThreeParams(double lower, double upper, double value, double expectedLower, double expectedUpper, boolean zeroCrossing) {
 		Range range = new Range(lower, upper);
 		Range actual = Range.shift(range, value, zeroCrossing);
@@ -333,6 +357,7 @@ class RangeTest {
 	}
 	
 	@Test
+	@Tag("testShiftThreeParamsNullRange")
 	void testShiftThreeParamsNullRange() {
 
 		assertThrows(IllegalArgumentException.class,
@@ -352,6 +377,7 @@ class RangeTest {
 		@CsvSource({"-3,-2,-5,-4","-2,-1,-3,2", "0,0,0,0", "-4,2,-6,5", "3,6,4,5"})
 		@Timeout(5)
 		@Tag("Dan")
+		@Tag("TestValidIntersects")
 		void testIntersectsTrue(double rangeLower, double rangeUpper, double intersectLower, double intersectUpper) {
 			System.out.print(rangeLower+ rangeUpper+ intersectLower+ intersectUpper);
 			Range testRange = new Range(rangeLower, rangeUpper);
@@ -364,6 +390,7 @@ class RangeTest {
 		@CsvSource({"-2,-1,-4,-3", "-2,-1,-0.5,0", "-1,1,-20,-10", "0,0,-3,-4", "1,5,0,0.5", "3,8,8.5,10", "4,5,7,8"})
 		@Timeout(5)
 		@Tag("Dan")
+		@Tag("testIntersectsFalse")
 		void testIntersectsFalse(double rangeLower, double rangeUpper, double intersectLower, double intersectUpper) {
 			System.out.println(rangeLower+ rangeUpper+ intersectLower+ intersectUpper);
 			Range testRange = new Range(rangeLower, rangeUpper);
@@ -379,6 +406,7 @@ class RangeTest {
 		@CsvSource({"1,5,3", "2,7,3", "2,5,1", "-2,-1,3", "0,1,2"})
 		@Timeout(10)
 		@Tag("Dan")
+		@Tag("Test Shift With Two Parameters")
 		void shiftRangeByDeltaTest(double lower, double upper, double delta) {
 			System.out.println(Math.signum(lower));
 //			System.out.print(lower+upper);
@@ -412,6 +440,7 @@ class RangeTest {
 		@CsvSource({"-10,-5,3,false", "2,7,3,false", "2,5,1,false", "-2,3,3,false", "-2,3,3,true", "-2,-1,4,true", "-2,-1,4,false"})
 		@Timeout(10)
 		@Tag("Dan")
+		@Tag("Test Shift With Three Parameters")
 		void shiftRangeByDeltaWithZeroCrossing(double lower, double upper, double delta, boolean allowZeroCrossing) {
 			Range initialRange = new Range(lower, upper);
 			Range actual = Range.shift(initialRange, delta, allowZeroCrossing);
